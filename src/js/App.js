@@ -24,6 +24,7 @@ class App extends React.Component {
 
     this.setActiveProperty = this.setActiveProperty.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
+    this.clearFilter = this.clearFilter.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.filterProperties = this.filterProperties.bind(this);
   }
@@ -74,6 +75,21 @@ class App extends React.Component {
     })
   }
 
+  clearFilter(e, form) {
+    e.preventDefault();
+
+    this.setState({
+      filterBedrooms: 'any',
+      filterBathrooms: 'any',
+      filterCars: 'any',
+      filteredProperties: [],
+      isFiltering: false,
+      activeProperty: this.state.properties[0]
+    });
+
+    form.reset();
+  }
+
   setActiveProperty(property, scroll) {
     const { index } = property;
 
@@ -104,6 +120,7 @@ class App extends React.Component {
           <Header
             filterIsVisible={filterIsVisible}
             toggleFilter={this.toggleFilter}
+            clearFilter={this.clearFilter}
             handleFilterChange={this.handleFilterChange}
           />
 

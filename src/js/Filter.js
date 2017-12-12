@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 class Filter extends Component {
   render() {
-    const { toggleFilter, handleFilterChange } = this.props;
+    const { toggleFilter, clearFilter, handleFilterChange } = this.props;
     return (
-      <form className="filter">
+      <form ref={input => this.form = input} className="filter">
         <div className="filterBox">
           <label htmlFor="filterBedrooms">Bedrooms</label>
           <select
@@ -76,7 +76,7 @@ class Filter extends Component {
         </div>
         <div className="filterBox">
           <label>&nbsp;</label>
-          <button className="btn-clear">Clear</button>
+          <button className="btn-clear" onClick={(e) => clearFilter(e, this.form)}>Clear</button>
         </div>
         <button className="btn-filter" onClick={(e) => toggleFilter(e)}><strong>X</strong><span>Close</span></button>
       </form>
@@ -86,6 +86,7 @@ class Filter extends Component {
 
 Filter.propTypes = {
   toggleFilter: PropTypes.func.isRequired,
+  clearFilter: PropTypes.func.isRequired,
   handleFilterChange: PropTypes.func.isRequired
 };
 
