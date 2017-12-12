@@ -16,6 +16,7 @@ class App extends React.Component {
       activeProperty: data.properties[0],
       filterIsVisible: false,
       filterBedrooms: 'any',
+      filterBathrooms: 'any',
       filteredProperties: [],
       isFiltering: false
     }
@@ -39,14 +40,16 @@ class App extends React.Component {
   }
 
   filterProperties() {
-    const { properties, filterBedrooms } = this.state
-    const isFiltering = filterBedrooms !== 'any';
+    const { properties, filterBedrooms, filterBathrooms } = this.state
+    const isFiltering = filterBedrooms !== 'any' || filterBathrooms !== 'any';
 
     const getFilteredProperties = (properties) => {
       const filteredProperties = [];
       properties.map(property => {
-        const { bedrooms } = property;
-        const match = bedrooms === parseInt(filterBedrooms) || filterBedrooms === 'any';
+        const { bedrooms, bathrooms } = property;
+        const match =
+          (bedrooms === parseInt(filterBedrooms) || filterBedrooms === 'any') &&
+          (bathrooms === parseInt(filterBathrooms) || filterBathrooms === 'any');
 
         // if the match is true push this property
         match && filteredProperties.push(property);
