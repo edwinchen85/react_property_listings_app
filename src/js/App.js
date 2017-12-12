@@ -19,6 +19,7 @@ class App extends React.Component {
       filterBedrooms: 'any',
       filterBathrooms: 'any',
       filterCars: 'any',
+      filterSort: 'any',
       filteredProperties: [],
       isFiltering: false
     }
@@ -43,8 +44,12 @@ class App extends React.Component {
   }
 
   filterProperties() {
-    const { properties, filterBedrooms, filterBathrooms, filterCars } = this.state;
-    const isFiltering = filterBedrooms !== 'any' || filterBathrooms !== 'any' || filterCars !== 'any';
+    const { properties, filterBedrooms, filterBathrooms, filterCars, filterSort } = this.state;
+    const isFiltering =
+      filterBedrooms !== 'any' ||
+      filterBathrooms !== 'any' ||
+      filterCars !== 'any' ||
+      filterSort !== 'any';
 
     const getFilteredProperties = (properties) => {
       const filteredProperties = [];
@@ -58,6 +63,16 @@ class App extends React.Component {
         // if the match is true push this property
         match && filteredProperties.push(property);
       });
+
+      // sort the propertiesList
+      switch (filterSort) {
+        case '0':
+          filteredProperties.sort((a, b) => a.price - b.price)
+          break;
+        case '1':
+          filteredProperties.sort((a, b) => b.price - a.price)
+          break;
+      }
 
       return filteredProperties;
     }
@@ -83,6 +98,7 @@ class App extends React.Component {
       filterBedrooms: 'any',
       filterBathrooms: 'any',
       filterCars: 'any',
+      filterSort: 'any',
       filteredProperties: [],
       isFiltering: false,
       activeProperty: this.state.properties[0]
