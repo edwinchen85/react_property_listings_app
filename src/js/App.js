@@ -20,6 +20,8 @@ class App extends React.Component {
       filterBathrooms: 'any',
       filterCars: 'any',
       filterSort: 'any',
+      priceFrom: 500000,
+      priceTo: 1000000,
       filteredProperties: [],
       isFiltering: false
     }
@@ -44,21 +46,24 @@ class App extends React.Component {
   }
 
   filterProperties() {
-    const { properties, filterBedrooms, filterBathrooms, filterCars, filterSort } = this.state;
+    const { properties, filterBedrooms, filterBathrooms, filterCars, filterSort, priceFrom, priceTo } = this.state;
     const isFiltering =
       filterBedrooms !== 'any' ||
       filterBathrooms !== 'any' ||
       filterCars !== 'any' ||
-      filterSort !== 'any';
+      filterSort !== 'any' ||
+      priceFrom !== '0' ||
+      priceTo !== '1000001';
 
     const getFilteredProperties = (properties) => {
       const filteredProperties = [];
       properties.map(property => {
-        const { bedrooms, bathrooms, carSpaces } = property;
+        const { bedrooms, bathrooms, carSpaces, price } = property;
         const match =
           (bedrooms === parseInt(filterBedrooms) || filterBedrooms === 'any') &&
           (bathrooms === parseInt(filterBathrooms) || filterBathrooms === 'any') &&
-          (carSpaces === parseInt(filterCars) || filterCars === 'any');
+          (carSpaces === parseInt(filterCars) || filterCars === 'any') &&
+          (price >= priceFrom && price <= priceTo);
 
         // if the match is true push this property
         match && filteredProperties.push(property);
@@ -99,6 +104,8 @@ class App extends React.Component {
       filterBathrooms: 'any',
       filterCars: 'any',
       filterSort: 'any',
+      priceFrom: 500000,
+      priceTo: 1000000,
       filteredProperties: [],
       isFiltering: false,
       activeProperty: this.state.properties[0]
