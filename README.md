@@ -15,3 +15,5 @@ The fun part of this project is you are given options to filter property listing
 - Order by: Low -> High / High -> Low
 
 These options can be combined to filter down the list. A clear-all-filter button is available to set everything back to original state. Close button and Filter button are there if you want to show or hide filter panel without losing states.
+
+[View demo site here.](http://edwinchen.co/react_property_listings_app/)
