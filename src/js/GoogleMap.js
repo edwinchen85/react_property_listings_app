@@ -64,7 +64,7 @@ class GoogleMap extends React.Component {
         });
 
         // set active property into the state
-        setActiveProperty(property);
+        setActiveProperty(property, true);
 
       });
 
