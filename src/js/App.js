@@ -15,12 +15,15 @@ class App extends React.Component {
       properties: data.properties,
       activeProperty: data.properties[0],
       filterIsVisible: false,
-      filterBedrooms: 'any'
+      filterBedrooms: 'any',
+      filteredProperties: [],
+      isFiltering: false
     }
 
     this.setActiveProperty = this.setActiveProperty.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.filterProperties = this.filterProperties.bind(this);
   }
 
   handleFilterChange(e) {
@@ -30,7 +33,19 @@ class App extends React.Component {
     // console.log(`${value} ${name}`);
     this.setState({
       [name]: value
-    })
+    }, function() {
+      this.filterProperties();
+    });
+  }
+
+  filterProperties() {
+    const { properties, filterBedrooms } = this.state
+    const isFiltering = filterBedrooms !== 'any';
+
+    this.setState({
+      filteredProperties: ['some data'],
+      isFiltering
+    });
   }
 
   toggleFilter(e) {
