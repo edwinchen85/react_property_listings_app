@@ -23,7 +23,7 @@ const configDev = {
 
 const configProd = {
     app: './src/index.js',
-    publicPath: '/',
+    publicPath: '',
     css: ExtractTextPlugin.extract({
         fallback: "style-loader",
         use: ['css-loader', 'sass-loader']

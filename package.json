@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server -d --env.development",
-    "clean": "rimraf dist/*",
+    "clean": "rimraf docs/*",
     "prod": "npm run clean && webpack -p --env.production"
   },
   "author": "Edwin Chen",
