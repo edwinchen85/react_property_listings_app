@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import Filter from './Filter';
 import image from '../images/house-location-pin.svg'
 
-const Header = ({filterIsVisible, toggleFilter}) => {
+const Header = ({ filterIsVisible, toggleFilter, handleFilterChange }) => {
   return (
     <header className={`${filterIsVisible ? 'filter-is-visible' : ''}`}>
 
-      <Filter toggleFilter={toggleFilter} />
+      <Filter
+        toggleFilter={toggleFilter}
+        handleFilterChange={handleFilterChange}
+      />
 
       <img src={image} />
       <h1>Property Listings</h1>
@@ -18,7 +21,8 @@ const Header = ({filterIsVisible, toggleFilter}) => {
 
 Header.propTypes = {
   filterIsVisible: PropTypes.bool.isRequired,
-  toggleFilter: PropTypes.func.isRequired
+  toggleFilter: PropTypes.func.isRequired,
+  handleFilterChange: PropTypes.func.isRequired
 };
 
 export default Header;
